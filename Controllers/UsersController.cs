@@ -5,6 +5,7 @@ using WebApi.Authorization;
 using WebApi.Entities;
 using WebApi.Models.Users;
 using WebApi.Services;
+using WebAPI.Models.Users;
 
 [Authorize]
 [ApiController]
@@ -34,8 +35,8 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("{id:int}")]
-    public IActionResult GetById(int id)
+    [HttpGet("{id}")]
+    public IActionResult GetById(string id)
     {
         // only admins can access other user records
         var currentUser = (User)HttpContext.Items["User"];
@@ -44,5 +45,15 @@ public class UsersController : ControllerBase
 
         var user =  _userService.GetById(id);
         return Ok(user);
+    }
+
+    [AllowAnonymous]
+    [HttpPost]
+    public IActionResult Post([FromBody] RegisterRequest model)
+    {
+        if (!_userService.Create(model))
+            return BadRequest(new { message = "Error: Username already registered" });
+        //return CreatedAtAction(nameof(GetById), new { id = newuser.Id }, newuser);
+        return Ok(new { message = "Creation Successful"});
     }
 }

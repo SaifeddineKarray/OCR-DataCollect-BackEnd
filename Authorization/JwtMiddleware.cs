@@ -1,6 +1,7 @@
 namespace WebApi.Authorization;
 
 using Microsoft.Extensions.Options;
+using System;
 using WebApi.Helpers;
 using WebApi.Services;
 
@@ -22,7 +23,7 @@ public class JwtMiddleware
         if (userId != null)
         {
             // attach user to context on successful jwt validation
-            context.Items["User"] = userService.GetById(userId.Value);
+            context.Items["User"] = userService.GetById(userId);
         }
 
         await _next(context);

@@ -68,17 +68,17 @@ app.UseMiddleware<JwtMiddleware>();
 
 app.MapControllers();
 
-{
-    var testUsers = new List<User>
-    {
-        new User { Id = 1, FirstName = "Admin", LastName = "User", Username = "admin", PasswordHash = BCryptNet.HashPassword("admin"), Role = Role.Admin },
-        new User { Id = 2, FirstName = "Normal", LastName = "User", Username = "user", PasswordHash = BCryptNet.HashPassword("user"), Role = Role.User }
-    };
+//{
+//    var testUsers = new List<User>
+//    {
+//        new User { Id = 1, FirstName = "Admin", LastName = "User", Username = "admin", PasswordHash = BCryptNet.HashPassword("admin"), Role = Role.Admin },
+//        new User { Id = 2, FirstName = "Normal", LastName = "User", Username = "user", PasswordHash = BCryptNet.HashPassword("user"), Role = Role.User }
+//    };
 
-    using var scope = app.Services.CreateScope();
-    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
-    dataContext.Users.AddRange(testUsers);
-    dataContext.SaveChanges();
-}
+//    using var scope = app.Services.CreateScope();
+//    var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
+//    dataContext.Users.AddRange(testUsers);
+//    dataContext.SaveChanges();
+//}
 
 app.Run();
