@@ -43,6 +43,29 @@ namespace WebAPI.Controllers
             return CreatedAtAction(nameof(Get), new { id = data.Id }, data);
         }
 
+        [HttpPost("upload-image")]
+        public IActionResult UploadImage([FromForm] IFormFile file)
+        {
+            // Check if the file is valid
+            if (file == null || file.Length <= 0)
+            {
+                return BadRequest("Invalid file");
+            }
+
+            // Process the file and save it to a location
+            // Replace 'filePath' with the actual path where the image will be saved
+            var filePath = Path.Combine("C:\\Users\\saifk\\Documents\\GitHub\\OCR-DataCollect\\WebAPI\\images", file.FileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+
+            // Return the image URL or path
+            var imageUrl = "C:\\Users\\saifk\\Documents\\GitHub\\OCR-DataCollect\\WebAPI\\images" + file.FileName; // Replace with your actual base URL
+            return Ok(new { imageUrl });
+        }
+
         // PUT api/<DataController>/5
         [HttpPut("{id}")]
         public ActionResult Put(string id, [FromBody] Data data)
