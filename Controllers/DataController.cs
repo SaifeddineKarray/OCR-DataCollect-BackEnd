@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
             }
 
             // Return the image URL or path
-            var imageUrl = "C:\\Users\\saifk\\Documents\\GitHub\\OCR-DataCollect\\WebAPI\\images" + file.FileName; // Replace with your actual base URL
+            var imageUrl = "C:\\Users\\saifk\\Documents\\GitHub\\OCR-DataCollect\\WebAPI\\images\\" + file.FileName; // Replace with your actual base URL
             return Ok(new { imageUrl });
         }
 
