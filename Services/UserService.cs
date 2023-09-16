@@ -7,10 +7,10 @@ using WebApi.Entities;
 using WebApi.Helpers;
 using WebApi.Models.Users;
 using MongoDB.Driver;
-using WebAPI.Models;
+using WebApi.Models;
 using System.Xml.Linq;
 using System.Diagnostics;
-using WebAPI.Models.Users;
+using WebApi.Models.Users;
 using System;
 
 public interface IUserService
@@ -19,6 +19,8 @@ public interface IUserService
     IEnumerable<User> GetAll();
     User GetById(string id);
     bool Create(RegisterRequest model);
+    void Update(User updateduser);
+    void Remove(string id);
 }
 
 public class UserService : IUserService
@@ -96,5 +98,22 @@ public class UserService : IUserService
         newuser.PasswordHash = BCrypt.HashPassword(model.Password);
         _users.InsertOne(newuser);
         return true;
+    }
+
+    public void Remove(string id)
+    {
+        _users.DeleteOne(user => user.Id == id);
+    }
+
+    public void Update(User editeduser)
+    {
+        var updateduser = _users.Find(x => x.Id == editeduser.Id).FirstOrDefault();
+       
+        updateduser.FirstName = editeduser.FirstName;
+        updateduser.LastName = editeduser.LastName;
+        updateduser.Username = editeduser.Username;
+        updateduser.Role = editeduser.Role;
+
+        _users.ReplaceOne(user => user.Id == updateduser.Id, updateduser);
     }
 }

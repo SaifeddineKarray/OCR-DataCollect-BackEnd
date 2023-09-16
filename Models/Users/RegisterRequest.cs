@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 using WebApi.Entities;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebAPI.Models.Users;
+namespace WebApi.Models.Users;
 
     public class RegisterRequest
     {

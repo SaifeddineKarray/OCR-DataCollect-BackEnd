@@ -9,10 +9,10 @@
     }
   },
   "profiles": {
-    "WebAPI": {
+    "Atom.OCR.Api": {
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7051;http://localhost:5076",
       "environmentVariables": {

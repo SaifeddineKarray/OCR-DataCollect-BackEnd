@@ -5,7 +5,8 @@ using WebApi.Authorization;
 using WebApi.Entities;
 using WebApi.Models.Users;
 using WebApi.Services;
-using WebAPI.Models.Users;
+using WebApi.Models.Users;
+using Microsoft.AspNetCore.Identity;
 
 [Authorize]
 [ApiController]
@@ -45,6 +46,20 @@ public class UsersController : ControllerBase
 
         var user =  _userService.GetById(id);
         return Ok(user);
+    }
+
+    [HttpPut("UpdateUser")]
+    public IActionResult UpdateUser([FromBody] User user)
+    {
+        _userService.Update(user);
+        return Ok();
+    }
+
+    [HttpDelete("{id}")]
+    public IActionResult DeleteUser(string id)
+    {
+        _userService.Remove(id);
+        return Ok();
     }
 
     [AllowAnonymous]

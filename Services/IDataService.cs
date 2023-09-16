@@ -1,6 +1,6 @@
-﻿using WebAPI.Models;
+﻿using WebApi.Models;
 
-namespace WebAPI.Services
+namespace WebApi.Services
 {
     public interface IDataService
     {

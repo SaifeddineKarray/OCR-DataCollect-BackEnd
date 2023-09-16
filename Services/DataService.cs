@@ -1,7 +1,7 @@
-﻿using WebAPI.Models;
+﻿using WebApi.Models;
 using MongoDB.Driver;
 
-namespace WebAPI.Services
+namespace WebApi.Services
 {
     public class DataService : IDataService
     {

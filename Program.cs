@@ -4,8 +4,7 @@ using System.Text.Json.Serialization;
 using WebApi.Entities;
 using WebApi.Helpers;
 using WebApi.Services;
-using WebAPI.Models;
-using WebAPI.Services;
+using WebApi.Models;
 using WebApi.Authorization;
 using BCryptNet = BCrypt.Net.BCrypt;
 
@@ -51,12 +50,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
 
 app.UseHttpsRedirection();
 
